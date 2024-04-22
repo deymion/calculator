@@ -1,0 +1,49 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    border: none;
+}
+
+:root {
+    --primary-color: #38FF56;
+    --secondary-color: #FFC300;
+    --text-color: #EADEDA;
+    --background-color-dark: #2E294E;
+}
+
+body {
+    font-family: "Red Hat Display", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--text-color);
+}
+
+.calculator {
+    margin-left: 28px;
+    font-size: 1.25em;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+.display {
+    color: var(--background-color-dark);
+    border: 1px solid var(--text-color);
+    padding: 8px 5px;
+    margin: 0 2.5px;
+}
+
+.keypad {
+    min-width: 300px;
+}
+
+.keypad td {
+    text-align: center;
+    cursor: pointer;
+}
+
+.keypad div {
+    background-color: var(--background-color-dark);
+}
