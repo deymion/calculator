@@ -8,8 +8,11 @@
 :root {
     --primary-color: #38FF56;
     --secondary-color: #FFC300;
-    --text-color: #EADEDA;
+    --text-color-light: #EADEDA;
+    --text-color-dark: #0D0B1C;
     --background-color-dark: #2E294E;
+    --background-color-light: #E3E3E3;
+    --text-color-warning: #FE6C6E;
 }
 
 body {
@@ -17,10 +20,11 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    color: var(--text-color);
+    color: var(--text-color-light);
 }
 
 .calculator {
+    margin-top: 25px;
     margin-left: 28px;
     font-size: 1.25em;
     display: flex;
@@ -29,21 +33,42 @@ body {
 }
 
 .display {
-    color: var(--background-color-dark);
-    border: 1px solid var(--text-color);
+    color: var(--text-color-dark);
+    border-bottom: 2px solid var(--background-color-dark);
     padding: 8px 5px;
-    margin: 0 2.5px;
+    margin-bottom: 10px;
+    text-align: right;
 }
 
 .keypad {
-    min-width: 300px;
+    table-layout: fixed;
+    width: 100%;
+    background-color: var(--background-color-light);
+    padding: 5px 5px;
+    border-radius: 3px;
 }
 
 .keypad td {
     text-align: center;
     cursor: pointer;
+    padding: 0;
 }
 
-.keypad div {
+.keypad .button {
     background-color: var(--background-color-dark);
+    padding: 8px 0;
+    border-radius: 3px;
+}
+
+.green-font {
+    color: var(--primary-color);
+}
+
+.red-font {
+    color: var(--text-color-warning);
+}
+
+.button.equal-sign {
+    background-color: var(--primary-color);
+    color: var(--background-color-dark);
 }
