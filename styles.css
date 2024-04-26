@@ -10,9 +10,9 @@
     --secondary-color: #FFC300;
     --text-color-light: #EADEDA;
     --text-color-dark: #0D0B1C;
+    --text-color-warning: #FE6C6E;
     --background-color-dark: #2E294E;
     --background-color-light: #E3E3E3;
-    --text-color-warning: #FE6C6E;
 }
 
 body {
@@ -21,6 +21,7 @@ body {
     font-weight: 400;
     font-style: normal;
     color: var(--text-color-light);
+    background-color: var(--background-color-dark);
 }
 
 .calculator {
@@ -33,11 +34,14 @@ body {
 }
 
 .display {
-    color: var(--text-color-dark);
-    border-bottom: 2px solid var(--background-color-dark);
+    color: var(--text-color-light);
+    background-color: var(--background-color-dark);
+    border: 1px solid var(--background-color-light);
+    border-radius: 3px;
     padding: 8px 5px;
     margin-bottom: 10px;
     text-align: right;
+    height: 2em;
 }
 
 .keypad {
