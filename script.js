@@ -5,8 +5,15 @@ let btn = document.querySelector('#btnKeys');
 btn.addEventListener('click', (event) => {
     let target = event.target;
 
-    console.log(target);
-    if(target.textContent === 'AC') clearDisplay();
+    if (target.textContent === 'AC') {
+        clearDisplay();
+    } else if (target.textContent === 'C') {
+        // Execute function to delete
+    } else if (target.textContent === '=') {
+        // Execute function to calculate
+    } else {
+        enterInputOnDisplay(target.textContent);
+    }
 });
 
 const add = function (a, b) {
@@ -36,3 +43,6 @@ function clearDisplay() {
     return input.textContent = "";
 }
 
+function enterInputOnDisplay(str) {
+    input.textContent += str;
+}
