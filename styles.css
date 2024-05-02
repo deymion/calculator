@@ -53,15 +53,17 @@ body {
 }
 
 .keypad td {
-    text-align: center;
-    cursor: pointer;
     padding: 0;
 }
 
-.keypad .button {
+button {
+    cursor: pointer;
     background-color: var(--background-color-dark);
     padding: 8px 0;
     border-radius: 3px;
+    width: 100%;
+    font-size: 1em;
+    color: var(--text-color-light);
 }
 
 .green-font {
@@ -72,7 +74,7 @@ body {
     color: var(--text-color-warning);
 }
 
-.button.equal-sign {
+.equal-sign {
     background-color: var(--primary-color);
     color: var(--background-color-dark);
 }
