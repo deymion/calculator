@@ -1,48 +1,45 @@
-let input = document.querySelector('#input');
-
+let input = document.querySelector('#display');
 let btn = document.querySelector('#btnKeys');
 
 btn.addEventListener('click', (event) => {
-    let target = event.target;
+    let target = event.target.value;
 
-    if (target.textContent === 'AC') {
+    if (target === 'clear') {
         clearDisplay();
-    } else if (target.textContent === 'C') {
+    } else if (target === 'delete') {
         // Execute function to delete
-    } else if (target.textContent === '=') {
+    } else if (target === 'equal-sign') {
         // Execute function to calculate
+    } else if (target === '+' || target === '-' || target === '*' || target === '/') {
+        // Execute function to perform operation
     } else {
-        enterInputOnDisplay(target.textContent);
+        updateDisplay(target);
     }
 });
 
-const add = function (a, b) {
-    return a + b;
-};
-
-const subtract = function (a, b) {
-    return a - b;
-};
-
-const multiply = function (a, b) {
-    return a * b;
-};
-
-const divide = function (a, b) {
-    return a / b;
-};
-
-function operate(operator, n1, n2) {
-    return operator === "+" ? add(n1, n2)
-        : operator === "-" ? subtract(n1, n2)
-            : operator === "x" ? multiply(n1, n2)
-                : operator === "/" ? divide(n1, n2) : 'Unvalid Format';
+function operate(operator, a, b) {
+    switch (operator) {
+        case "+":
+            return a + b;
+        case "-":
+            return a - b;
+        case "*":
+            return a * b;
+        case "/":
+            if (b === 0) {
+                throw new Error('Math Error');
+            } else {
+                return a / b;
+            }
+        default:
+            throw new Error('Invalid Format');
+    }
 }
 
 function clearDisplay() {
     return input.textContent = "";
 }
 
-function enterInputOnDisplay(str) {
-    input.textContent += str;
+function updateDisplay(str) {
+    input.textContent += `${str}`;
 }
