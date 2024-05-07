@@ -1,4 +1,9 @@
-let input = document.querySelector('#display');
+let operand1 = null,
+    operand2 = null,
+    operator = null,
+    displayValue = 0,
+    result = null;
+
 let btn = document.querySelector('#btnKeys');
 
 btn.addEventListener('click', (event) => {
@@ -6,14 +11,32 @@ btn.addEventListener('click', (event) => {
 
     if (target === 'clear') {
         clearDisplay();
-    } else if (target === 'delete') {
+    } else if (target === 'signs') {
         // Execute function to delete
     } else if (target === 'equal-sign') {
         // Execute function to calculate
+        calculateResult();
+        updateDisplay();
+    } else if (target === '%') {
+        // Execute function to operate percentage value
     } else if (target === '+' || target === '-' || target === '*' || target === '/') {
         // Execute function to perform operation
+        operator = target;
+        if (operand1 === null) {
+            operand1 = Number(displayValue);
+        } else if (operand2 === null) {
+            operand2 = Number(displayValue);
+        }
+        // Check values
+        // console.log(`operator: ${operator}`);
+        // console.log(typeof operand1, `operand1: ${operand1}`);
+        // console.log(typeof operand2, `operand2: ${operand2}`);
+
+        displayValue = '';
+        updateDisplay();
     } else {
-        updateDisplay(target);
+        setDisplay(target);
+        updateDisplay();
     }
 });
 
@@ -36,10 +59,32 @@ function operate(operator, a, b) {
     }
 }
 
-function clearDisplay() {
-    return input.textContent = "";
+function calculateResult() {
+    if (operand2 === null) {
+        operand2 = Number(displayValue);
+        try {
+            displayValue = operate(operator, operand1, operand2);
+        } catch (error) {
+            displayValue = error.message;
+            updateDisplay();
+        }
+    }
 }
 
-function updateDisplay(str) {
-    input.textContent += `${str}`;
+function clearDisplay() {
+    operand1 = null;
+    operand2 = null;
+    operator = null;
+    displayValue = 0;
+    result = null;
+    updateDisplay();
+}
+
+function setDisplay(str) {
+    displayValue = Number(new String(displayValue + str));
+}
+
+function updateDisplay() {
+    let display = document.querySelector('#display');
+    display.textContent = displayValue;
 }
