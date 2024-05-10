@@ -78,3 +78,8 @@ button {
     background-color: var(--primary-color);
     color: var(--background-color-dark);
 }
+
+.operand:focus {
+    background-color: var(--secondary-color);
+    color: var(--text-color-dark);
+}
