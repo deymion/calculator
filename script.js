@@ -2,9 +2,10 @@ let operand1 = null,
     operand2 = null,
     operator = null,
     displayValue = 0,
-    result = null;
+    result = null,
+    displayCleared = false;
 
-let btn = document.querySelector('#btnKeys');
+const btn = document.querySelector('#btnKeys');
 
 btn.addEventListener('click', handleClick);
 
@@ -21,11 +22,8 @@ function handleClick(event) {
     } else if (target === '%') {
         // Execute function to operate percentage value
     } else if (target === '+' || target === '-' || target === '*' || target === '/') {
-        // Execute function to perform operation
         handleOperator(target);
     } else {
-        // If operand1 and operand are set, the display should clear once
-        // new input for operand2 continue function `setDisplay()`
         handleOperandInput(target);
     }
 }
@@ -36,28 +34,27 @@ function calculateAndDisplayResult() {
     }
     calculateResult();
     displayValue = result;
+    displayCleared = false;
     updateDisplay();
 }
 
 function handleOperator(op) {
-    operator = op;
-
-    if (operand1 !== null && operand2 !== null) {
-        calculateResult();
-        displayValue = result;
-        operand1 = result;
-        operand2 = null;
-    } if (operand1 === null) {
+    if (operand1 === null) {
         operand1 = Number(displayValue);
     } else if (operand2 === null) {
         operand2 = Number(displayValue);
     }
 
-    // Log for debugging
-    console.log(`operator: ${operator}`);
-    console.log(typeof operand1, `operand1: ${operand1}`);
-    console.log(typeof operand2, `operand2: ${operand2}`);
-
+    // Perform calculation for the first single pair of numbers (e.g, (x + y) - z)
+    if (operand1 !== null && operand2 !== null && operator !== null) {
+        if (result === null) {
+            calculateAndDisplayResult();
+        }
+        operand1 = result;
+        operand2 = null;
+        result = null;
+    }
+    operator = op;
     updateDisplay();
 }
 
@@ -90,10 +87,12 @@ function calculateResult() {
 }
 
 function handleOperandInput(input) {
-    // If operand1 and operand2 are set, clear the display for new input
-    if (operand1 !== null && operand2 !== null) {
+    // Clear displayValue once before operand2 input
+    if (operator !== null && !displayCleared) {
         clearDisplay();
+        displayCleared = true; // Set the flag to true after clearing display
     }
+
     setDisplay(input);
     updateDisplay();
 }
@@ -104,6 +103,7 @@ function clearAll() {
     operator = null;
     displayValue = 0;
     result = null;
+    displayCleared = false;
     updateDisplay();
 }
 
