@@ -28,12 +28,45 @@ function handleClick(event) {
     }
 }
 
+function operate(operator, a, b) {
+    switch (operator) {
+        case "+":
+            return a + b;
+        case "-":
+            return a - b;
+        case "*":
+            return a * b;
+        case "/":
+            if (b === 0) {
+                throw new Error('Math Error');
+            } else {
+                return a / b;
+            }
+    }
+}
+
+function calculateResult() {
+    if (operator === null) {
+        return operand1;
+    }
+
+    try {
+        result = operate(operator, operand1, operand2);
+    } catch (e) {
+        result = e.message;
+    }
+    return result;
+}
+
 function calculateAndDisplayResult() {
+    if (operand1 === null) {
+        operand1 = Number(displayValue);
+    }
     if (operand2 === null) {
         operand2 = Number(displayValue);
     }
-    calculateResult();
-    displayValue = result;
+
+    displayValue = calculateResult();
     displayCleared = false;
     updateDisplay();
 }
@@ -56,34 +89,6 @@ function handleOperator(op) {
     }
     operator = op;
     updateDisplay();
-}
-
-function operate(operator, a, b) {
-    switch (operator) {
-        case "+":
-            return a + b;
-        case "-":
-            return a - b;
-        case "*":
-            return a * b;
-        case "/":
-            if (b === 0) {
-                throw new Error('Math Error');
-            } else {
-                return a / b;
-            }
-        default:
-            throw new Error('Invalid Format');
-    }
-}
-
-function calculateResult() {
-    try {
-        result = operate(operator, operand1, operand2);
-    } catch (error) {
-        displayValue = error.message;
-        updateDisplay();
-    }
 }
 
 function handleOperandInput(input) {
