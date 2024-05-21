@@ -1,7 +1,7 @@
 let operand1 = null,
     operand2 = null,
     operator = null,
-    displayValue = 0,
+    displayValue = '0',
     result = null,
     displayCleared = false;
 
@@ -16,6 +16,8 @@ function handleClick(event) {
         clearAll();
     } else if (target === 'signs') {
         // Execute function to handle sign change
+    } else if (target === '.') {
+        inputDecimal();
     } else if (target === 'equal-sign') {
         // Execute function to calculate
         calculateAndDisplayResult();
@@ -66,7 +68,7 @@ function calculateAndDisplayResult() {
         operand2 = Number(displayValue);
     }
 
-    displayValue = calculateResult();
+    displayValue = `${calculateResult()}`;
     displayCleared = false;
     updateDisplay();
 }
@@ -98,27 +100,39 @@ function handleOperandInput(input) {
         displayCleared = true; // Set the flag to true after clearing display
     }
 
+    if (input === '0' && displayValue === '0' || displayValue === '0') {
+        clearDisplay();
+    }
+    
     setDisplay(input);
     updateDisplay();
+}
+
+function inputDecimal() {
+    if (displayValue.includes('.')) return false;
+    setDisplay('.');
+    updateDisplay();
+
+    return true;
 }
 
 function clearAll() {
     operand1 = null;
     operand2 = null;
     operator = null;
-    displayValue = 0;
+    displayValue = '0';
     result = null;
     displayCleared = false;
     updateDisplay();
 }
 
 function clearDisplay() {
-    displayValue = 0;
+    displayValue = '';
     return true;
 }
 
 function setDisplay(str) {
-    displayValue = Number(new String(displayValue + str));
+    displayValue = `${displayValue}` + str;
 }
 
 function updateDisplay() {
