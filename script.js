@@ -19,7 +19,6 @@ function handleClick(event) {
     } else if (target === '.') {
         inputDecimal();
     } else if (target === 'equal-sign') {
-        // Execute function to calculate
         calculateAndDisplayResult();
     } else if (target === '%') {
         // Execute function to operate percentage value
@@ -49,7 +48,7 @@ function operate(operator, a, b) {
 
 function calculateResult() {
     if (operator === null) {
-        return operand1;
+        return result = operand1;
     }
 
     try {
@@ -71,6 +70,8 @@ function calculateAndDisplayResult() {
     displayValue = `${calculateResult()}`;
     displayCleared = false;
     updateDisplay();
+    operand1 = null;
+    operand2 = null;
 }
 
 function handleOperator(op) {
@@ -103,7 +104,7 @@ function handleOperandInput(input) {
     if (input === '0' && displayValue === '0' || displayValue === '0') {
         clearDisplay();
     }
-    
+
     setDisplay(input);
     updateDisplay();
 }
