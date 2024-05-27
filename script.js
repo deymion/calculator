@@ -15,13 +15,16 @@ function handleClick(event) {
     if (target === 'clear') {
         clearAll();
     } else if (target === 'signs') {
-        // Execute function to handle sign change
+        inputSign(Number(displayValue))
+        updateDisplay();
     } else if (target === '.') {
         inputDecimal();
+        updateDisplay();
     } else if (target === 'equal-sign') {
         calculateAndDisplayResult();
     } else if (target === '%') {
-        // Execute function to operate percentage value
+        inputPercent(Number(displayValue));
+        updateDisplay();
     } else if (target === '+' || target === '-' || target === '*' || target === '/') {
         handleOperator(target);
     } else {
@@ -112,8 +115,6 @@ function handleOperandInput(input) {
 function inputDecimal() {
     if (displayValue.includes('.')) return false;
     setDisplay('.');
-    updateDisplay();
-
     return true;
 }
 
@@ -139,4 +140,12 @@ function setDisplay(str) {
 function updateDisplay() {
     let display = document.querySelector('#display');
     display.textContent = displayValue;
+}
+
+function inputPercent(num) {
+    displayValue = (num / 100).toString();
+}
+
+function inputSign(num) {
+    displayValue = (num * -1).toString();
 }
