@@ -70,7 +70,7 @@ function calculateAndDisplayResult() {
         operand2 = Number(displayValue);
     }
 
-    displayValue = `${calculateResult()}`;
+    displayValue = `${roundTo(calculateResult())}`;
     displayCleared = false;
     updateDisplay();
     operand1 = null;
@@ -148,4 +148,8 @@ function inputPercent(num) {
 
 function inputSign(num) {
     displayValue = (num * -1).toString();
+}
+
+function roundTo(num, decimalPlaces=15) {
+    return parseFloat(Math.round(num + 'e' + decimalPlaces) + 'e-' + decimalPlaces);
 }
