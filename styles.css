@@ -36,12 +36,12 @@ body {
 .display {
     color: var(--text-color-light);
     background-color: var(--background-color-dark);
-    border: 1px solid var(--background-color-light);
+    border: 5px solid var(--background-color-light);
     border-radius: 3px;
-    padding: 8px 5px;
+    padding: 5px 5px;
     margin-bottom: 10px;
     text-align: right;
-    height: 2em;
+    font-size: 32px;
 }
 
 .keypad {
