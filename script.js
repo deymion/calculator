@@ -6,8 +6,9 @@ let operand1 = null,
     displayCleared = false;
 
 const btn = document.querySelector('#btnKeys');
-
 btn.addEventListener('click', handleClick);
+
+window.addEventListener("keyup", handleKey);
 
 function handleClick(event) {
     let target = event.target.value;
@@ -150,6 +151,25 @@ function inputSign(num) {
     displayValue = (num * -1).toString();
 }
 
-function roundTo(num, decimalPlaces=15) {
+function roundTo(num, decimalPlaces = 15) {
     return parseFloat(Math.round(num + 'e' + decimalPlaces) + 'e-' + decimalPlaces);
+}
+
+function handleKey(event) {
+    if (Number.isInteger(parseInt(event.key)) || event.key === '.') {
+        const key = document.querySelector(`button[value='${event.key}']`);
+        key.click();
+    } else if (event.key === 'Backspace') {
+        clearEntry();
+    }
+}
+
+function clearEntry() {
+    let entry = displayValue.slice(0, -1);
+    if (entry === '') {
+        displayValue = '0';
+    } else {
+        displayValue = entry;
+    }
+    updateDisplay();
 }
