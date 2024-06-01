@@ -87,9 +87,7 @@ function handleOperator(op) {
 
     // Perform calculation for the first single pair of numbers (e.g, (x + y) - z)
     if (operand1 !== null && operand2 !== null && operator !== null) {
-        if (result === null) {
-            calculateAndDisplayResult();
-        }
+        calculateAndDisplayResult();
         operand1 = result;
         operand2 = null;
         result = null;
