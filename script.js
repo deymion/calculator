@@ -138,7 +138,7 @@ function setDisplay(str) {
 
 function updateDisplay() {
     let display = document.querySelector('#display');
-    display.textContent = displayValue;
+    display.textContent = displayValue.substring(0, 16);
 }
 
 function inputPercent(num) {
