@@ -9,4 +9,4 @@ This is a basic on-screen calculator built using JavaScript, HTML, and CSS.
 
 # Usage
 
-This project is deployed using GitHub Pages. You can access it by clicking [here](#).
+This project is deployed using GitHub Pages. You can access it by clicking [here](https://deymion.github.io/calculator/).
